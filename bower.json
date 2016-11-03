@@ -1,16 +1,18 @@
 {
   "name": "kano-user-menu",
+  "homepage": "https://github.com/abridger/kano-user-menu",
   "authors": [
     "KanoComputing <alan@kano.me>"
   ],
   "description": "A component to display the authentication and user menu on the Kano sites",
   "main": "index.html",
   "keywords": [
-    "web-component",
+    "web-components",
     "polymer",
     "kano"
   ],
   "license": "MIT",
+  "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
