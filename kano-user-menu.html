@@ -13,11 +13,21 @@ Example:
 -->
 <dom-module id="kano-user-menu">
     <style>
+        *[hidden] {
+            display: none !important;
+        }
         :host nav {
             @apply(--layout-flex);
             @apply(--layout-vertical);
             background: #ffffff;
+            font-family: var(--kano-user-menu-font-family);
+            font-weight: 700;
             display: block;
+        }
+        :host ul {
+            list-style: none;
+            margin: 0px;
+            padding: 0px;
         }
         :host .kano-user-nav,
         :host .auth-menu,
@@ -39,6 +49,9 @@ Example:
         :host .auth-menu {
             @apply(--layout-end-justified);
         }
+        :host .auth-menu .menu-item {
+            height: 100%;
+        }
         :host .menu-item {
             cursor: pointer;
             position: relative;
@@ -48,7 +61,11 @@ Example:
         :host .menu-button {
             background-color: transparent;
             border: 0px;
-            color: #44423d;
+            color: #a7a7a7;
+            cursor: pointer;
+            font-family: var(--kano-user-menu-font-family);
+            font-size: 16px;
+            font-weight: bold;
             height: 100%;
             margin: 0px;
             padding: 0px;
@@ -86,27 +103,21 @@ Example:
             padding: 15px 0px;
             font-size: 15px;
         }
-        :host .login-menu {
-            padding: 23px 5px 15px 5px;
-            display: inline-block;
-            margin: 0px 2px;
-            font-size: 16px;
-            font-weight: 700;
-            text-decoration: none;
-            color: #414042;
-            vertical-align: middle;
-        }
         :host #notifications-menu {
             @apply(--layout-horizontal);
             @apply(--layout-center);
             @apply(--layout-center-justified);
+        }
+        :host #notifications-menu,
+        :host #avatar-menu {
+          height: 100%;
         }
         :host .user-info {
             @apply(--layout-vertical);
             min-height: 40px;
         }
         :host .user-info .level {
-            color: #7f7f7f;
+            color: #a7a7a7;
         }
         :host kano-drop-down {
             padding: 0px;
@@ -116,15 +127,35 @@ Example:
                 box-shadow: none;
                 position: relative;
                 width: 100%;
-            };
+            }
+        }
+        :host {
+            --kano-drop-down: {
+                padding: 0px;
+                right: 0px;
+                width: 100%;
+            }
+        }
+        .notifications-icon {
+            height: 20px;
         }
         :host #notifications-drop-down {
             right: -12.5px;
             width: 360px;
+            --kano-drop-down: {
+                box-shadow: none;
+                position: relative;
+                width: 100%;
+            }
         }
         :host #user-drop-down {
             right: 5px;
             width: 200px;
+            --kano-drop-down: {
+                box-shadow: none;
+                position: relative;
+                width: 100%;
+            }
         }
         kano-user-badge {
             pointer-events: none;
@@ -175,15 +206,8 @@ Example:
                 padding: 20px;
                 text-align: left;
             }
-            :host #notifications-drop-down {
-                --kano-drop-down {
-                    padding: 0px;
-                    right: 0px;
-                    width: 100%;
-                }
-            }
-            :host #user-drop-down {
-                --kano-drop-down {
+            :host {
+                --kano-drop-down: {
                     padding: 0px;
                     right: 0px;
                     width: 100%;
