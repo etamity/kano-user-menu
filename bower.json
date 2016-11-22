@@ -1,8 +1,8 @@
 {
   "name": "kano-user-menu",
-  "homepage": "https://github.com/abridger/kano-user-menu",
+  "homepage": "https://github.com/KanoComputing/kano-user-menu",
   "authors": [
-    "KanoComputing <alan@kano.me>"
+    "KanoComputing"
   ],
   "description": "A component to display the authentication and user menu on the Kano sites",
   "main": "index.html",
