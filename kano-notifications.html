@@ -1,3 +1,4 @@
+<link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../iron-pages/iron-pages.html">
 <link rel="import" href="../iron-icon/iron-icon.html">
 <link rel="import" href="./kano-nav-bar-icons.html">
@@ -134,31 +135,31 @@
               type: String
             }
         },
-        _readAll () {
+        _readAll: function () {
             this.fire('notifications-read-all');
             this.notifications.forEach(function (notification, index) {
                 this.set(`notifications.${index}.read`, true);
             });
         },
-        _hasNotifications () {
+        _hasNotifications: function () {
             return !!this.notifications.length;
         },
-        _computeUnreadCount () {
+        _computeUnreadCount: function () {
             return this._computeUnread().length;
         },
-        _computeUnread () {
+        _computeUnread: function () {
             return this.notifications.filter(function (notification) { return !notification.read; })
         },
-        _computeReadClass (read) {
+        _computeReadClass: function (read) {
             return read ? 'read' : 'unread';
         },
-        _onNotificationTap (e) {
+        _onNotificationTap: function (e) {
             var notification = e.model.get('notification'),
                 index = e.model.get('index');
             this.fire('notifications-read', notification);
             this.set(`notifications.${index}.read`, true);
         },
-        _computeNotificationUrl (notification) {
+        _computeNotificationUrl: function (notification) {
             var path = '/notifications';
             notification.meta = notification.meta || {};
             notification.meta.item = notification.meta.item || {};
@@ -185,8 +186,7 @@
             }
             return `${this.worldRoot}${path}`;
         },
-
-        _getItemLink (item) {
+        _getItemLink: function (item) {
             var link = '/notifications';
 
             if (item.type === 'share') {
@@ -201,8 +201,7 @@
 
             return link;
         },
-
-        _getUpdateLink (notification) {
+        _getUpdateLink: function (notification) {
             var link = '/notifications';
 
             if (notification.category === 'updates') {
