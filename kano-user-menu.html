@@ -265,7 +265,7 @@ Example:
                         </div>
                     </button>
                     <div class="unread-count" hidden$="[[!unread]]">[[unread]]</div>
-                    <kano-drop-down id="notifications-drop-down" caret-align="right" on-tap="_stopPropagation">
+                    <kano-drop-down id="notifications-drop-down" caret-align="right" on-tap="_hideDropdown">
                         <kano-notifications notifications="{{notifications}}" on-read="_onRead" on-read-all="_onReadAll" unread-count="{{unread}}" world-root="[[worldRoot]]" username="[[user.username]]"></kano-notifications>
                     </kano-drop-down>
                 </li>
@@ -276,7 +276,7 @@ Example:
                             <span class="username no-mobile">[[user.username]]</span>
                         </div>
                     </button>
-                    <kano-drop-down id="user-drop-down" caret-align="right" on-tap="_stopPropagation">
+                    <kano-drop-down id="user-drop-down" caret-align="right" on-tap="_hideDropdown">
                         <ul>
                             <a href$="[[worldRoot]]/users/[[user.username]]" class="item">
                                 <kano-drop-down-item>
@@ -363,15 +363,15 @@ Example:
             }
         },
         attached () {
-            this.listen(document, 'tap', '_onDocumentTap');
+            this.listen(document, 'tap', '_closeDropdowns');
         },
         detached () {
-            this.unlisten(document, 'tap', '_onDocumentTap');
+            this.unlisten(document, 'tap', '_closeDropdowns');
         },
         _isAuthenticated (user) {
             return !!user;
         },
-        _onDocumentTap (e) {
+        _closeDropdowns (e) {
             var dropDowns = Polymer.dom(this.root).querySelectorAll('kano-drop-down');
             for (var i = 0; i < dropDowns.length; i++) {
                 dropDowns[i].close();
@@ -414,8 +414,10 @@ Example:
         _isUserAdmin (user) {
             return user && user.admin_level > 0;
         },
-        _stopPropagation (e) {
+        _hideDropdown (e) {
             e.stopPropagation();
+            this.menuOpened = false;
+            this._closeDropdowns();
         }
     });
 </script>
