@@ -154,10 +154,16 @@
             return read ? 'read' : 'unread';
         },
         _onNotificationTap: function (e) {
+            e.preventDefault(); 
             var notification = e.model.get('notification'),
-                index = e.model.get('index');
+                index = e.model.get('index'),
+                link = this._computeNotificationUrl(notification);
+
             this.fire('notifications-read', notification);
             this.set(`notifications.${index}.read`, true);
+            setTimeout(function(){
+                window.location.href = link;
+            },0);
         },
         _computeNotificationUrl: function (notification) {
             var path = '/notifications';
